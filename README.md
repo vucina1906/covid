@@ -1,0 +1,1 @@
+#Machine learning project that aim to predict covid mortality due to other risk factors present in covid patients
