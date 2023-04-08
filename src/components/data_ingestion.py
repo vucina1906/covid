@@ -5,6 +5,8 @@ from exception import CustomException
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+from data_transformation import DataTransformation
+from data_transformation import DataTransformationConfig
 
 #By using dataclass decorator this class automaticaly generate special methods such as __init__ , __repr__
 #We use this decorator when we only define variables in class
@@ -22,7 +24,7 @@ class DataIngestion:
     def initiate_data_ingestion(self):#Create a function that do ingestion,splitting and saving data
         logging.info("Entered data ingestion method")
         try:
-            df = pd.read_csv('notebook\data\CovidData.csv')
+            df = pd.read_csv('notebook\data\df_EDA.csv')
             logging.info('Dataset read as a dataframe')
             
             #Create a artifacts directory using os.makedirs method and avoid error if folder already exist with exist_ok = True argument
@@ -46,7 +48,12 @@ class DataIngestion:
 
 if __name__=='__main__':
     obj=DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data,test_data,_ = obj.initiate_data_ingestion()
+    
+    data_transformation=DataTransformation()
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
+    
+   
     
     
  
