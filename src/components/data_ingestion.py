@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 from data_transformation import DataTransformation
 from data_transformation import DataTransformationConfig
+from model_trainer import ModelTrainerConfig,ModelTrainer
 
 #By using dataclass decorator this class automaticaly generate special methods such as __init__ , __repr__
 #We use this decorator when we only define variables in class
@@ -53,7 +54,8 @@ if __name__=='__main__':
     data_transformation=DataTransformation()
     train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
     
-   
+    model_trainer = ModelTrainer()
+    print(model_trainer.initiate_model_trainer(train_arr,test_arr))	
     
     
  
