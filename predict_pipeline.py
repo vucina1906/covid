@@ -1,6 +1,11 @@
 import sys
 import pandas as pd
-from src.exception import CustomException
+from exception import CustomException
+import os
+import dill
+
+
+
 
 def load_object(file_path):
     try:
@@ -31,11 +36,11 @@ class PredictPipeline:
         
         
 class CustomData: #this function map all inputs that we gave in HTML to the backend
-    def __init__(self,USMER:int,MEDICAL_UNIT:int,SEX:str,HOSPITALIZED:int,
-                 PNEUMONIA:int,AGE:int,PREGNANT:int,DIABETES:int,COPD:int,              
-                 ASTHMA:int,INMSUPR:int,HIPERTENSION:int,OTHER_DISEASE:int,
-                 CARDIOVASCULAR:int,OBESITY:int,RENAL_CHRONIC:int,TOBACCO :int,
-                 ANTIGEN_TEST:int, AGE_GROUP:str
+    def __init__(self,USMER: str = "" ,MEDICAL_UNIT:str = "",SEX:str = "",HOSPITALIZED:str = "",
+                 PNEUMONIA:str = "",AGE:str = "",PREGNANT:str = "",DIABETES:str = "",COPD:str = "",              
+                 ASTHMA:str = "",INMSUPR:str = "",HIPERTENSION:str = "",OTHER_DISEASE:str = "",
+                 CARDIOVASCULAR:str = "",OBESITY:str = "",RENAL_CHRONIC:str = "",TOBACCO :str = "",
+                 ANTIGEN_TEST:str = "", AGE_GROUP:str = ""
                  ):
         self.USMER = USMER #So whatever user type in field USMER for example it become self.USMER variable
         self.MEDICAL_UNIT = MEDICAL_UNIT
@@ -83,7 +88,7 @@ class CustomData: #this function map all inputs that we gave in HTML to the back
                 "AGE_GROUP": [self.AGE_GROUP]    
             }
             
-            return pd.DataFrame(custom_data_input_dict) #Now we turn dictionary into a dataframe that our model.pkl can use for prediction
+            return pd.DataFrame(custom_data_input_dict) #Now we turn dictionary into a dataframe taht our model.pkl can use for prediction
         except Exception as e:
             raise CustomException(e,sys)
     

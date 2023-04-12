@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Down bellow  href="{{ url_for('static', filename='styles.css') }}" part in your <link> tag dynamically generates the URL for your CSS file based on the Flask application's static file serving configuration and the filename of the CSS file you want to include in your HTML template.
+        You are using this for Flask and production -->
+         <!-- Use an absolute file path href="/static/styles.css" to reference your CSS file and use Go Live while creating pages -->
+        <link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='styles.css') }}">   
+        <title>Covid Project</title>
+        
+    </head>
+    <body>
+        <div class="login">
+            <h1>Mortality prediction in COVID patients</h1>
+    
+            <form action="{{ url_for('predict_datapoint')}}" method="post">
+                <h1>
+                    <div class="logo1">
+                    <legend>Medical Unit Data</legend>
+                    </div>
+                </h1>
+            <div class="left-side">
+                <div class="mb-3">
+                    <label class="form-label">USMER (level of medical units)</label>
+                    <select class="form-control" name="USMER" placeholder="Select USMER" required>
+                        <option class="placeholder" selected disabled value="">Select USMER</option>
+                        <option value="1"> 1 </option>
+                        <option value="1"> 2 </option>   
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Medical Unit (number of medical unit)</label>
+                    <select class="form-control" name="MEDICAL_UNIT" placeholder="Select Medical Unit Number" required>
+                        <option class="placeholder" selected disabled value="">Select Medical Unit</option>
+                        <option value="1"> 1 </option>
+                        <option value="2"> 2 </option> 
+                        <option value="3"> 3 </option>
+                        <option value="4"> 4 </option> 
+                        <option value="5"> 5 </option>
+                        <option value="6"> 6 </option> 
+                        <option value="7"> 7 </option>
+                        <option value="8"> 8 </option> 
+                        <option value="9"> 9 </option>
+                        <option value="10"> 10 </option> 
+                        <option value="11"> 11 </option>
+                        <option value="12"> 12 </option> 
+                        <option value="13"> 13 </option> 
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Patient Gender</label>
+                    <select class="form-control" name="SEX" placeholder="Select Gender" required>
+                        <option class="placeholder" selected disabled value="">Select Gender</option>
+                        <option value="Male"> Male </option> 
+                        <option value="Female"> Female </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Hospitalized</label>
+                    <select class="form-control" name="HOSPITALIZED" placeholder="Select Hospitalized" required>
+                        <option class="placeholder" selected disabled value="">Select Hospitalized</option>
+                        <option value="0"> 0 </option> 
+                        <option value="1"> 1 </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Pneumonia</label>
+                    <select class="form-control" name="PNEUMONIA" placeholder="Select Pneumonia" required>
+                        <option class="placeholder" selected disabled value="">Select Pneumonia</option>
+                        <option value="0"> 0 </option> 
+                        <option value="1"> 1 </option>
+    
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Age</label>
+                    <input type="number" class="form-control" name="AGE" placeholder="Age" 
+                           min="1" max="100" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Pregnant</label>
+                    <select class="form-control" name="PREGNANT" placeholder="Select Pregnant" required>
+                        <option class="placeholder" selected disabled value="">Select Pregnant</option>
+                        <option value="0"> 0 </option> 
+                        <option value="1"> 1 </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Diabetes</label>
+                    <select class="form-control" name="DIABETES" placeholder="Select Diabetes" required>
+                        <option class="placeholder" selected disabled value="">Select Diabetes</option>
+                        <option value="0"> 0 </option> 
+                        <option value="1"> 1 </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">COPD (Pulmonary disease)</label>
+                    <select class="form-control" name="COPD" placeholder="Select COPD" required>
+                        <option class="placeholder" selected disabled value="">Select COPD</option>
+                        <option value="0"> 0 </option> 
+                        <option value="1"> 1 </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Asthma</label>
+                    <select class="form-control" name="ASTHMA" placeholder="Select Asthma" required>
+                        <option class="placeholder" selected disabled value="">Select Asthma</option>
+                        <option value="0"> 0 </option> 
+                        <option value="1"> 1 </option>
+                    </select>
+                </div>
+            </div>
+            <div class="right-side">   
+                <div class="mb-3">
+                    <label class="form-label">Immunosuppression</label>
+                    <select class="form-control" name="INMSUPR" placeholder="Select Immunosuppression" required>
+                        <option class="placeholder" selected disabled value="">Select Immunosuppression</option>
+                        <option value="0"> 0 </option> 
+                        <option value="1"> 1 </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Hypertension</label>
+                    <select class="form-control" name="HYPERTENSION" placeholder="Select Hypertension" required>
+                        <option class="placeholder" selected disabled value="">Select Hypertension</option>
+                        <option value="0"> 0 </option> 
+                        <option value="1"> 1 </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Other Diseases Present</label>
+                    <select class="form-control" name="OTHER_DISEASE" placeholder="Select Other Diseases" required>
+                        <option class="placeholder" selected disabled value="">Select Other Diseases</option>
+                        <option value="0"> 0 </option> 
+                        <option value="1"> 1 </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Cardiovascular disease</label>
+                    <select class="form-control" name="CARDIOVASCULAR" placeholder="Select CARDIOVASCULAR" required> //From each div container name will represent a key and value will be typed by user. Then as a dictionary data will be sent to function predict_datapoint
+                        <option class="placeholder" selected disabled value="">Select Cardiovascular</option>
+                        <option value="0"> 0 </option> 
+                        <option value="1"> 1 </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Obesity</label>
+                    <select class="form-control" name="OBESITY" placeholder="Select OBESITY" required>
+                        <option class="placeholder" selected disabled value="">Select Obesity</option>
+                        <option value="0"> 0 </option> 
+                        <option value="1"> 1 </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Renal Chronic Disease</label>
+                    <select class="form-control" name="RENAL_CHRONIC" placeholder="Select RENAL_CHRONIC" required>
+                        <option class="placeholder" selected disabled value="">Select Renal chronic</option>
+                        <option value="0"> 0 </option> 
+                        <option value="1"> 1 </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tobacco</label>
+                    <select class="form-control" name="TOBACCO" placeholder="Select TOBACCO" required>
+                        <option class="placeholder" selected disabled value="">Select Tobacco</option>
+                        <option value="0"> 0 </option> 
+                        <option value="1"> 1 </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Antigen Test Results</label>
+                    <select class="form-control" name="ANTIGEN_TEST" placeholder="Select ANTIGEN_TEST" required>
+                        <option class="placeholder" selected disabled value="">Select Antigen test</option>
+                        <option value="0"> 0 </option> 
+                        <option value="1"> 1 </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Age Group</label>
+                    <select class="form-control" name="AGE_GROUP" placeholder="Select AGE_GROUP" required>
+                        <option class="placeholder" selected disabled value="">Select Age froup</option>
+                        <option value="10-19"> 10-19 </option> 
+                        <option value="20-29"> 20-29 </option>
+                        <option value="30-39"> 30-39 </option> 
+                        <option value="40-49"> 40-49 </option>
+                        <option value="50-59"> 50-59 </option> 
+                        <option value="60-69"> 60-69 </option>
+                        <option value="70-79"> 70-79 </option> 
+                        <option value="80-89"> 80-89 </option>
+                        <option value="90-100">90-100 </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+            <div class="predict-mortality"> 
+                <div class="mb-3">
+                    <input class="btn btn-primary" type="submit" value="Predict Mortality" required />
+                </div>
+            </div>
+            </form>        
+     <div class="stairs"></div>
+     <div class="hospital"></div>
+     <div class="gender"></div>
+     <div class="hospitalized"></div>
+     <div class="lungs"></div>
+     <div class="age"></div>
+     <div class="pregnant"></div>
+     <div class="diabetes"></div>
+     <div class="copd"></div>
+     <div class="asthma"></div>
+     <div class="imunosupression"></div>
+     <div class="hypertension"></div>
+     <div class="ilness"></div>
+     <div class="cardiovascular"></div>
+     <div class="obesity"></div>
+     <div class="kidney"></div>
+     <div class="tobacco"></div>
+     <div class="antigen"></div>
+     <div class="antigen"></div>
+     <div class="age_group"></div>
+
+     
+     
+
+    </body>
+</html>

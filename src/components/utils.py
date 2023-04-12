@@ -8,7 +8,7 @@ import dill
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import accuracy_score
 
-from exception import CustomException
+from src.components.exception import CustomException
 
 def save_object(file_path,obj):#create function to save Python object(obj) to a file specified by file path
     try:
